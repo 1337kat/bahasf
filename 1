@@ -1,1 +1,26 @@
+-- function to remove specific GUI and lighting element, and perform actions
+local function removeElementsAndPerformActions()
+local player = game.Players.LocalPlayer
+local playerGui = player:WaitForChild("PlayerGui")
 
+-- remove the MainScreen GUI
+local mainScreen = playerGui:FindFirstChild("MainScreen")
+if mainScreen then
+mainScreen:Destroy()
+end
+
+-- remove the Blur effect from Lighting
+local lighting = game:GetService("Lighting")
+local blur = lighting:FindFirstChild("Blur")
+if blur then
+blur:Destroy()
+end
+
+-- perform the required actions
+local replicatedStorage = game:GetService("ReplicatedStorage")
+replicatedStorage.Remotes.InitialSpawn:FireServer()
+replicatedStorage.Remotes.DeleteHologram:FireServer()
+end
+
+-- call the function
+removeElementsAndPerformActions()
